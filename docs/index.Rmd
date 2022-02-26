@@ -1,0 +1,59 @@
+---
+title: "Minority Groups and the Rates at Which they are Incarcerated"
+author: "Aakash Krishna"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Introduction
+
+This data set, collected by the Vera Institute of Justice, seeks to establish any existing connections between racial status and probability of incarceration. In this report, I will be using the provided data to establish whether of not any link between these two factors exist.
+
+I have chosen to primarily focus on the ratios of a specific population to the total population (with regards to members of the community serving time in prison) as it would more thoroughly illustrate an exponential increase in racially diverse inmates as opposed to population numbers, which might have been skewed by increases in jail size and more people in general being incarcerated.
+
+Some variables I have found significant to determine the results to this study include:
+
+```{r, include = FALSE}
+source("../source/analysis.R")
+library("kableExtra")
+```
+
+```{r, echo = FALSE}
+
+kable(summary_table) %>%
+  kable_styling(bootstrap_options = "striped", full_width = F)
+
+```
+
+# Trends over Time Chart
+
+This chart looks at various racial minority groups in the US and measures how the ratio of their population to the total population changes over a few decades (1990-2018). I use ratios instead of population numbers for the reasons listed above. I thought that this would be a relevant and fast way to establish whether or not members of racial minorities are being sentenced more than they were in the past. It shows that there is an increase in this ratio across the different minorities studied, indicating that they may be sentenced at higher rates now as compared to 1990.
+
+```{r, echo = FALSE}
+
+ggplotly(trends_over_time)
+
+```
+
+# Variable Comparison Chart
+
+For this chart, I decided to directly compare the ratio of white prisoners to black prisoners across the US in 2018. The purpose of this was to uncover any obvious patterns in the data leaning towards one result or another. Although it may not be extremely clear-cut because of the different measurement scales, the points on the scatterplot seem to skew towards being higher on the y-axis, indicating that black prisoners are more prevalent in American prisons as of 2018. Since members of the black community do not make up a majority of the total population, it must be inferred that they are being detained at higher rates.
+
+```{r, echo = FALSE}
+
+ggplotly(comparison)
+
+```
+
+# Map
+
+This map compares the ratio of the black population in prison to the total population of those in prison across all states in the US. It shows that there is a significant difference in these ratios across states, with significantly higher ratios in South states like Florida and Louisiana, and lower rates in Northern states like Idaho, Montana and North Dakota. This could be due to various social or political factors, as well as the total populations of the black community living in those areas, which are currently outside the scope of this report.
+
+```{r, echo = FALSE}
+
+ggplotly(us_map)
+
+```
